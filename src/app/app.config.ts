@@ -5,8 +5,7 @@ import { routes } from "./app.routes";
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    // Todo implement xsrf protection (withXsrfConfiguration)
-    provideHttpClient(),
+    provideHttpClient(withXsrfConfiguration({})),
     provideRouter(routes, withComponentInputBinding()),
   ],
 };
