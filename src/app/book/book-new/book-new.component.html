@@ -1,0 +1,61 @@
+<h2>New</h2>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <label class="form-field">
+    <span>ISBN</span>
+    <input formControlName="isbn" />
+  </label>
+
+  <label class="form-field">
+    <span>Title</span>
+    <input formControlName="title" />
+    <small *ngIf="form.get('title')?.dirty && form.get('title')?.hasError('required')">
+      Please insert a title.
+    </small>
+  </label>
+
+  <label class="form-field">
+    <span>Subtitle</span>
+    <input formControlName="subtitle" />
+  </label>
+
+  <ng-container formArrayName="authors">
+    <ng-container *ngFor="let author of authors.controls; let i = index">
+      <label class="form-field">
+        <span>Author</span>
+        <input [formControlName]="i" />
+        <small *ngIf="author?.dirty && author?.hasError('required')">
+          Please insert an Author.
+        </small>
+        <small *ngIf="author?.dirty && author?.hasError('invalidAuthor')">
+          Der Name eines Autors darf keine Zahlen beinhalten!
+        </small>
+      </label>
+      <button (click)="deleteAuthor(i)">
+        Remove Author
+      </button>
+    </ng-container>
+  </ng-container>
+  <button type="button" (click)="addAuthor()">
+    Author hinzufügen
+  </button>
+
+  <label class="form-field">
+    <span>Abstract</span>
+    <input formControlName="abstract" />
+  </label>
+
+  <label class="form-field">
+    <span>Cover</span>
+    <input formControlName="cover" />
+  </label>
+
+  <div class="form-actions">
+    <button type="submit" [disabled]="form.invalid">Save</button>
+  </div>
+</form>
+
+<div *ngIf="submitted">
+  <h2>Successfully submitted</h2>
+  <app-book-card [content]="newBook"></app-book-card>
+</div>

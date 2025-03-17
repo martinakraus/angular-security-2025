@@ -1,0 +1,13 @@
+<ng-container *ngIf="book$ | async as book">
+  <h3>
+    {{ book.title }}
+  </h3>
+  <h4>ISBN - {{ book.isbn }}</h4>
+  <section class="book-insights">
+    <p>
+      {{ book.abstract }}
+      <i>{{ book.author }}</i>
+    </p>
+    <img [src]="book.cover" [alt]="book.title" class="book-cover" />
+  </section>
+</ng-container>

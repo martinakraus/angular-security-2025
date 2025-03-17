@@ -1,0 +1,14 @@
+:host {
+  display: block;
+  margin: 1rem;
+}
+
+.book-insights {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+}
+
+.book-cover {
+  max-height: 200px;
+}
