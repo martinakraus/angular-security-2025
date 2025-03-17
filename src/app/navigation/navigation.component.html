@@ -1,4 +1,10 @@
 <ul>
   <li><a routerLink="/books" routerLinkActive="active">Books</a></li>
   <li><a routerLink="/about" routerLinkActive="active">About</a></li>
+  @if (isLoggedIn$ | async) {
+    <li><a routerLink="/profile" routerLinkActive="active">Profil</a></li>
+    <li><a (click)="logout($event)">Logout</a></li>
+  } @else {
+    <li><a routerLink="/login" routerLinkActive="active">Login</a></li>
+  }
 </ul>

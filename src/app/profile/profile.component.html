@@ -1,0 +1,13 @@
+@if (user$ | async) {
+  <div class="profile">
+    <h2>{{ (user$ | async)?.username || "No Username provided" }}</h2>
+    <p>{{ (user$ | async)?.email || "No Email provided" }}</p>
+  </div>
+} @else {
+  <div class="profile">
+    <h2>No data</h2>
+    <p>No data</p>
+  </div>
+}
+
+<div><a routerLink="edit">Edit Profile</a></div>
