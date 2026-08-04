@@ -1,14 +1,21 @@
-import { Component, ElementRef, inject, ViewChild } from "@angular/core";
-import { RouterOutlet } from "@angular/router";
-import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
-import { FormsModule } from "@angular/forms";
+import {
+  Component,
+  ElementRef,
+  inject,
+  ViewChild,
+  ChangeDetectionStrategy,
+} from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: "app-root",
+  selector: 'app-root',
   standalone: true,
   imports: [FormsModule],
-  templateUrl: "./app.component.html",
-  styleUrl: "./app.component.scss",
+  templateUrl: './app.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   sanitizer = inject(DomSanitizer);
@@ -16,7 +23,7 @@ export class AppComponent {
   renderedValue!: string | SafeHtml;
   unsafeRenderedValue!: SafeHtml;
 
-  @ViewChild("divRender3") div!: ElementRef;
+  @ViewChild('divRender3') div!: ElementRef;
 
   renderData() {
     const safeValue = this.sanitizer.bypassSecurityTrustHtml(this.value);
@@ -27,9 +34,9 @@ export class AppComponent {
     this.unsafeRenderedValue = safeValue;
 
     // Div 3
-    this.div.nativeElement.textContent = "";
-    const img = document.createElement("img");
-    img.src = "none";
+    this.div.nativeElement.textContent = '';
+    const img = document.createElement('img');
+    img.src = 'none';
     this.div.nativeElement.appendChild(img);
   }
 }
