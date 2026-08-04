@@ -1,9 +1,10 @@
-import { Component } from "@angular/core";
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  selector: "app-logout-button",
+  selector: 'app-logout-button',
   template: '<button (click)="logout()">Logout</button>',
-  styleUrl: "./logout-button.component.scss",
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrl: './logout-button.component.scss',
 })
 export class LogoutButtonComponent {
   logout() {
