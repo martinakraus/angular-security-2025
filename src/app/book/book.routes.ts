@@ -7,15 +7,15 @@ import { BookNewComponent } from './book-new/book-new.component';
 export const bookRoutes: Routes = [
   {
     path: '',
-    component: BookComponent
+    component: BookComponent,
   },
   {
     path: 'new',
-    component: BookNewComponent
+    component: BookNewComponent,
   },
   {
     path: 'detail/:isbn',
     component: BookDetailComponent,
-    canDeactivate: [confirmLeaveGuardFn]
-  }
+    canDeactivate: [confirmLeaveGuardFn],
+  },
 ];
