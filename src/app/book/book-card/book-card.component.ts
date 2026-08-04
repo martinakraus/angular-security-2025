@@ -1,12 +1,20 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  inject,
+  Input,
+  Output,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { Book } from '../book';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
-    selector: 'app-book-card',
-    imports: [],
-    templateUrl: './book-card.component.html',
-    styleUrl: './book-card.component.scss'
+  selector: 'app-book-card',
+  imports: [],
+  templateUrl: './book-card.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrl: './book-card.component.scss',
 })
 export class BookCardComponent {
   customStyle = { color: '#064D9E', fontWeight: 600 };
@@ -15,9 +23,12 @@ export class BookCardComponent {
   @Input({ required: true })
   set content(book: Book) {
     if (typeof book.abstract === 'string') {
-      this.book = { ...book, abstract: this.sanitizer.bypassSecurityTrustHtml(book.abstract) };
+      this.book = {
+        ...book,
+        abstract: this.sanitizer.bypassSecurityTrustHtml(book.abstract),
+      };
     } else {
-      this.book = book
+      this.book = book;
     }
   }
 
