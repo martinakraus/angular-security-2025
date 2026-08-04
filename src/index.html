@@ -32,16 +32,16 @@
         //     return string.replace(/\</g, "&lt;");
         //   },
         // });
-        trustedTypes.createPolicy("default", {
+        trustedTypes.createPolicy('default', {
           createHTML: (string) => {
-            console.warn("createHTML called by default policy");
-            return string.replace(/\</g, "&lt;");
+            console.warn('createHTML called by default policy');
+            return string.replace(/\</g, '&lt;');
           },
         });
         // trustedTypeText = myPolicy.createHTML(dangerousText);
       }
 
-      document.getElementById("martina").innerHTML = trustedTypeText;
+      document.getElementById('martina').innerHTML = trustedTypeText;
     </script>
   </body>
 </html>
