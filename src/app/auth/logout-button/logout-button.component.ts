@@ -1,11 +1,16 @@
-
-import { Component, inject, DOCUMENT } from "@angular/core";
-import { AuthService } from "@auth0/auth0-angular";
+import {
+  Component,
+  inject,
+  DOCUMENT,
+  ChangeDetectionStrategy,
+} from '@angular/core';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
-  selector: "app-logout-button",
+  selector: 'app-logout-button',
   template: '<button (click)="logout()">Log out</button>',
-  styleUrl: "./logout-button.component.scss",
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrl: './logout-button.component.scss',
 })
 export class LogoutButtonComponent {
   private auth = inject(AuthService);

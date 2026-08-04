@@ -4,13 +4,12 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BookApiService {
   readonly #baseUrl = 'http://localhost:4730';
 
-  constructor(private readonly http: HttpClient) {
-  }
+  constructor(private readonly http: HttpClient) {}
 
   getAll(): Observable<Book[]> {
     return this.http.get<Book[]>(`${this.#baseUrl}/books`);
