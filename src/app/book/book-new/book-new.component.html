@@ -10,9 +10,7 @@
     <span>Title</span>
     <input formControlName="title" />
     @if (form.get('title')?.dirty && form.get('title')?.hasError('required')) {
-      <small>
-        Please insert a title.
-      </small>
+      <small> Please insert a title. </small>
     }
   </label>
 
@@ -27,24 +25,16 @@
         <span>Author</span>
         <input [formControlName]="i" />
         @if (author?.dirty && author?.hasError('required')) {
-          <small>
-            Please insert an Author.
-          </small>
+          <small> Please insert an Author. </small>
         }
         @if (author?.dirty && author?.hasError('invalidAuthor')) {
-          <small>
-            Der Name eines Autors darf keine Zahlen beinhalten!
-          </small>
+          <small> Der Name eines Autors darf keine Zahlen beinhalten! </small>
         }
       </label>
-      <button (click)="deleteAuthor(i)">
-        Remove Author
-      </button>
+      <button (click)="deleteAuthor(i)">Remove Author</button>
     }
   </ng-container>
-  <button type="button" (click)="addAuthor()">
-    Author hinzufügen
-  </button>
+  <button type="button" (click)="addAuthor()">Author hinzufügen</button>
 
   <label class="form-field">
     <span>Abstract</span>
