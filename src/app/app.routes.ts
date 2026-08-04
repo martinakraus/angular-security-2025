@@ -6,16 +6,16 @@ export const routes: Routes = [
   {
     path: '',
     redirectTo: '/about',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'about',
-    component: AboutComponent
+    component: AboutComponent,
   },
   {
     path: 'books',
     loadChildren: () =>
-      import('./book/book.routes').then(mod => mod.bookRoutes),
-    canMatch: [isUserAuthenticatedGuardFn]
-  }
+      import('./book/book.routes').then((mod) => mod.bookRoutes),
+    canMatch: [isUserAuthenticatedGuardFn],
+  },
 ];

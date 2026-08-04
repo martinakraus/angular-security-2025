@@ -3,7 +3,7 @@ import { Book } from '../book';
 
 @Pipe({
   name: 'bookFilter',
-  standalone: true
+  standalone: true,
 })
 export class BookFilterPipe implements PipeTransform {
   /**
@@ -21,7 +21,7 @@ export class BookFilterPipe implements PipeTransform {
    */
   transform(
     books: Book[] | null | undefined,
-    searchTerm: string | null
+    searchTerm: string | null,
   ): Book[] {
     if (!searchTerm) {
       return books || [];
@@ -31,8 +31,8 @@ export class BookFilterPipe implements PipeTransform {
       return [];
     }
 
-    return books.filter(book =>
-      book.title.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())
+    return books.filter((book) =>
+      book.title.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase()),
     );
 
     /*
