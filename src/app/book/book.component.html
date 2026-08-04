@@ -3,12 +3,11 @@
   type="search"
   placeholder="Filter your books..."
   (input)="updateBookSearchTerm($event)"
-  />
+/>
 
 <div>
   <a routerLink="new">Create Book</a>
 </div>
-
 
 @for (book of books() | bookFilter: bookSearchTerm; track book) {
   <app-book-card
