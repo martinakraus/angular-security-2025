@@ -3,7 +3,7 @@ import { BookDetailComponent } from './book-detail/book-detail.component';
 
 export const confirmLeaveGuardFn: CanDeactivateFn<BookDetailComponent> = (
   route,
-  state
+  state,
 ) => {
   const wantsToLeave = confirm('Do you really want to leave?');
 
