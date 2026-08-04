@@ -1,16 +1,17 @@
-import { Component, inject } from "@angular/core";
-import { FormBuilder, ReactiveFormsModule } from "@angular/forms";
-import { take } from "rxjs";
-import { HttpClient } from "@angular/common/http";
-import { Router } from "@angular/router";
-import { UserStateService } from "../user-state.service";
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { take } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { UserStateService } from '../user-state.service';
 
 @Component({
-  selector: "app-login",
+  selector: 'app-login',
   standalone: true,
   imports: [ReactiveFormsModule],
-  templateUrl: "./login.component.html",
-  styleUrl: "./login.component.scss",
+  templateUrl: './login.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrl: './login.component.scss',
 })
 export class LoginComponent {
   private readonly http = inject(HttpClient);
@@ -19,19 +20,19 @@ export class LoginComponent {
   private readonly formBuilder = inject(FormBuilder);
   views = 0;
   form = this.formBuilder.nonNullable.group({
-    name: [""],
-    password: [""],
+    name: [''],
+    password: [''],
   });
 
   submit() {
     const credentials = this.form.getRawValue();
     this.http
-      .post("/login", credentials)
+      .post('/login', credentials)
       .pipe(take(1))
       .subscribe((res) => {
         this.userStateService.login();
         console.log(res);
-        this.router.navigate(["/profile"]);
+        this.router.navigate(['/profile']);
       });
   }
 

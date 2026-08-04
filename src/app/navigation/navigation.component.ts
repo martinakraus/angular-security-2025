@@ -1,13 +1,14 @@
-import { Component, inject } from "@angular/core";
-import { Router, RouterLink, RouterLinkActive } from "@angular/router";
-import { UserStateService } from "../user-state.service";
-import { AsyncPipe } from "@angular/common";
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { UserStateService } from '../user-state.service';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
-  selector: "app-navigation",
+  selector: 'app-navigation',
   imports: [RouterLink, RouterLinkActive, AsyncPipe],
-  templateUrl: "./navigation.component.html",
-  styleUrl: "./navigation.component.scss",
+  templateUrl: './navigation.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrl: './navigation.component.scss',
 })
 export class NavigationComponent {
   private readonly userStateService = inject(UserStateService);
@@ -17,6 +18,6 @@ export class NavigationComponent {
   logout(mouseEvent: MouseEvent) {
     mouseEvent.preventDefault();
     this.userStateService.logout();
-    this.router.navigate(["/login"]);
+    this.router.navigate(['/login']);
   }
 }

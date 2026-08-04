@@ -1,12 +1,12 @@
-import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
-import { Component, inject } from "@angular/core";
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import {
   FormControl,
   FormGroup,
   NonNullableFormBuilder,
   ReactiveFormsModule,
-} from "@angular/forms";
-import { Router } from "@angular/router";
+} from '@angular/forms';
+import { Router } from '@angular/router';
 
 type UserFormGroup = {
   username: FormControl<string>;
@@ -15,35 +15,36 @@ type UserFormGroup = {
 };
 
 @Component({
-  selector: "app-profile-edit",
+  selector: 'app-profile-edit',
   imports: [ReactiveFormsModule],
-  templateUrl: "./profile-edit.component.html",
-  styleUrl: "./profile-edit.component.scss",
+  templateUrl: './profile-edit.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrl: './profile-edit.component.scss',
 })
 export class ProfileEditComponent {
   private readonly http = inject(HttpClient);
   formBuilder = inject(NonNullableFormBuilder);
   private readonly router = inject(Router);
   form: FormGroup<UserFormGroup> = this.formBuilder.group({
-    username: [""],
-    email: [""],
-    password: [""],
+    username: [''],
+    email: [''],
+    password: [''],
   });
 
   onSubmit() {
     const body = new HttpParams()
-      .set("username", this.form.value.username || "")
-      .set("password", this.form.value.password || "")
-      .set("email", this.form.value.email || "");
+      .set('username', this.form.value.username || '')
+      .set('password', this.form.value.password || '')
+      .set('email', this.form.value.email || '');
 
     const headers = new HttpHeaders({
-      "Content-Type": "application/x-www-form-urlencoded",
+      'Content-Type': 'application/x-www-form-urlencoded',
     });
 
     this.http
-      .post("/api/profile", body.toString(), { headers })
+      .post('/api/profile', body.toString(), { headers })
       .subscribe(() => {
-        this.router.navigate(["/profile"]);
+        this.router.navigate(['/profile']);
       });
   }
 }

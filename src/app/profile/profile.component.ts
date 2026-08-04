@@ -1,8 +1,8 @@
-import { AsyncPipe } from "@angular/common";
-import { HttpClient } from "@angular/common/http";
-import { Component, inject } from "@angular/core";
-import { RouterLink } from "@angular/router";
-import { Observable } from "rxjs";
+import { AsyncPipe } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { Observable } from 'rxjs';
 
 type User = {
   username: string;
@@ -11,13 +11,14 @@ type User = {
 };
 
 @Component({
-  selector: "app-profile",
+  selector: 'app-profile',
   imports: [AsyncPipe, RouterLink],
-  templateUrl: "./profile.component.html",
-  styleUrl: "./profile.component.scss",
+  templateUrl: './profile.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrl: './profile.component.scss',
 })
 export class ProfileComponent {
   private readonly http = inject(HttpClient);
 
-  user$: Observable<User> = this.http.get<User>("/api/profile");
+  user$: Observable<User> = this.http.get<User>('/api/profile');
 }
