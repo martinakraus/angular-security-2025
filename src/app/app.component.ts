@@ -1,22 +1,29 @@
-import { Component, ElementRef, inject, ViewChild } from "@angular/core";
-import { RouterOutlet } from "@angular/router";
-import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
-import { FormsModule } from "@angular/forms";
+import {
+  Component,
+  ElementRef,
+  inject,
+  ViewChild,
+  ChangeDetectionStrategy,
+} from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: "app-root",
+  selector: 'app-root',
   standalone: true,
   imports: [FormsModule],
-  templateUrl: "./app.component.html",
-  styleUrl: "./app.component.scss",
+  templateUrl: './app.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   sanitizer = inject(DomSanitizer);
   value = `Hello!<img src="none" onerror="alert('This data has become code!')">`;
-  renderedValue = "";
+  renderedValue = '';
   unsafeRenderedValue!: SafeHtml;
 
-  @ViewChild("divRender3") div!: ElementRef;
+  @ViewChild('divRender3') div!: ElementRef;
 
   renderData() {
     // Div 1
@@ -24,7 +31,7 @@ export class AppComponent {
 
     // Div 2
     this.unsafeRenderedValue = this.sanitizer.bypassSecurityTrustHtml(
-      this.value
+      this.value,
     );
 
     // Div 3
